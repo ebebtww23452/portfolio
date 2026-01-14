@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuNaZa Floating Sections</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#020617;
+  background-image:radial-gradient(circle at top,#0f172a 0%,#020617 55%);
+  color:#fff;
+  padding:60px 30px;
+}
+
+/* ================= Wrapper ================= */
+.wrapper{
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:120px;
+}
+
+/* ================= Rows ================= */
+.row{
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+.row.reverse{flex-direction:row-reverse}
+
+/* ================= Card ================= */
+.card{
+  flex:1;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.02)
+  );
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  transition:transform .3s ease;
+  will-change:transform;
+}
+.card.small{flex:.8}
+.card.big{flex:1.3}
+.card:hover{
+  transform:translate3d(0,-10px,0);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  background:#111;
+}
+
+/* ================= Card Content ================= */
+.card-content{
+  padding:28px;
+}
+.card-content h2{
+  margin:0 0 18px;
+  font-size:26px;
+  font-weight:700;
+}
+
+/* ================= Button ================= */
+.open-btn{
+  all:unset;
+  cursor:pointer;
+  padding:12px 28px;
+  font-weight:600;
+  border-radius:12px;
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
+  box-shadow:0 10px 25px rgba(79,70,229,.45);
+}
+.open-btn:hover{opacity:.9}
+
+/* ================= Center Card ================= */
+.center-card{
+  max-width:900px;
+  margin:auto;
+}
+
+/* ================= Panels ================= */
+.panel{
+  position:fixed;
+  inset:0;
+  background:#020617;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s ease;
+  z-index:999;
+  display:flex;
+  flex-direction:column;
+}
+.panel.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* ================= Panel Header ================= */
+.panel-header{
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  background:#020617;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.panel-header h3{
+  margin:0;
+  font-size:18px;
+}
+
+/* ================= Close Button ================= */
+.close-btn{
+  background:#ef4444;
+  border:none;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ================= iframe ================= */
+.panel iframe{
+  flex:1;
+  width:100%;
+  border:none;
+  background:#fff;
+}
+
+/* ================= Mobile ================= */
+@media(max-width:900px){
+  .row,.row.reverse{flex-direction:column}
+  .wrapper{gap:80px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <!-- HERO / CARDS -->
+  <div class="row">
+    <div class="card big">
+      <img src="https://i.postimg.cc/pdSb5n53/51cc166b-fd5d-46e4-9b45-74b1cb3f16bf-cover.png">
+      <div class="card-content">
+        <h2>Hero Section</h2>
+        <button class="open-btn" data-panel="hero">Open Live</button>
+      </div>
+    </div>
+
+    <div class="card small">
+      <img src="https://i.postimg.cc/Kz7fS6bT/best-css-card-design.webp">
+      <div class="card-content">
+        <h2>Cards Section</h2>
+        <button class="open-btn" data-panel="cards">Open Live</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div class="card center-card">
+    <img src="https://i.postimg.cc/C1MYbVcx/target-candy-boo-result-1.webp">
+    <div class="card-content">
+      <h2>Buttons Section</h2>
+      <button class="open-btn" data-panel="buttons">Open Live</button>
+    </div>
+  </div>
+
+  <!-- FOOTER / ANIMATIONS -->
+  <div class="row reverse">
+    <div class="card small">
+      <img src="https://i.postimg.cc/ncWPkthf/attractive-responsive-footer.webp">
+      <div class="card-content">
+        <h2>Footer Section</h2>
+        <button class="open-btn" data-panel="footer">Open Live</button>
+      </div>
+    </div>
+
+    <div class="card big">
+      <img src="https://i.postimg.cc/sXBB5S6d/images.png">
+      <div class="card-content">
+        <h2>Animations</h2>
+        <button class="open-btn" data-panel="animations">Open Live</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ================= PANELS ================= -->
+<div class="panel" id="hero">
+  <div class="panel-header">
+    <h3>Hero Section</h3>
+    <button class="close-btn">Close</button>
+  </div>
+  <iframe loading="lazy" src="https://freefrontend.com/css-hero-sections/"></iframe>
+</div>
+
+<div class="panel" id="cards">
+  <div class="panel-header">
+    <h3>Cards Section</h3>
+    <button class="close-btn">Close</button>
+  </div>
+  <iframe loading="lazy" src="https://freefrontend.com/css-cards/"></iframe>
+</div>
+
+<div class="panel" id="buttons">
+  <div class="panel-header">
+    <h3>Buttons Section</h3>
+    <button class="close-btn">Close</button>
+  </div>
+  <iframe loading="lazy" src="https://getcssscan.com/css-buttons-examples"></iframe>
+</div>
+
+<div class="panel" id="footer">
+  <div class="panel-header">
+    <h3>Footer Section</h3>
+    <button class="close-btn">Close</button>
+  </div>
+  <iframe loading="lazy" src="https://codepen.io/tag/responsive%20footer"></iframe>
+</div>
+
+<div class="panel" id="animations">
+  <div class="panel-header">
+    <h3>Animations</h3>
+    <button class="close-btn">Close</button>
+  </div>
+  <iframe loading="lazy" src="https://freefrontend.com/css-animations/"></iframe>
+</div>
+
+<script>
+document.querySelectorAll('.open-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.getElementById(btn.dataset.panel).classList.add('active');
+  });
+});
+
+document.querySelectorAll('.close-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.closest('.panel').classList.remove('active');
+  });
+});
+</script>
+
+</body>
+</html>
